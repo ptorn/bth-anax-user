@@ -30,6 +30,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     public $lastname;
     public $administrator;
     public $enabled;
+    public $deleted;
 
 
 
@@ -40,9 +41,9 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
      *
      * @return void
      */
-    public function createUser($userData)
+    public function createUser(User $user)
     {
-        $this->setUserData($userData);
+        $this->setUserData($user);
         $this->save();
     }
 
@@ -51,13 +52,14 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Update user.
      *
-     * @param  array        $userData Key, value array.
+     * @param  array        $user User object.
      *
      * @return void
      */
-    public function updateUser($userData)
+    public function updateUser(User $user)
     {
-        $this->setUserData($userData);
+        $this->find("id", $user->id);
+        $this->setUserData($user);
         $this->save();
     }
 
@@ -83,12 +85,16 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Dynamicly set user properties to its value.
      *
-     * @param array            $userData Key, value array.
+     * @param array            $user user object
      */
-    public function setUserData($userData)
+    public function setUserData(User $user)
     {
-        foreach ($userData as $key => $value) {
-            $this->{$key} = $value;
+        $userVarArray = get_object_vars($user);
+
+        foreach ($userVarArray as $key => $value) {
+            if ($value != null) {
+                $this->{$key} = $value;
+            }
         }
     }
 
