@@ -17,10 +17,8 @@ return [
         ],
         "response" => [
             "shared" => true,
-            //"callback" => "\Anax\Response\Response",
             "callback" => function () {
-                $obj = new \Anax\Response\ResponseUtility();
-                $obj->setDI($this);
+                $obj = new \testing\User\Helper();
                 return $obj;
             }
         ],
@@ -51,9 +49,7 @@ return [
         "view" => [
             "shared" => true,
             "callback" => function () {
-                $view = new \Anax\View\ViewCollection();
-                $view->setDI($this);
-                $view->configure("view.php");
+                $view = new \testing\User\Helper();
                 return $view;
             }
         ],
@@ -106,8 +102,7 @@ return [
         "pageRender" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Peto16\Utils\Utils();
-                $obj->setDI($this);
+                $obj = new \testing\User\Helper();
                 return $obj;
             }
         ],
@@ -172,8 +167,8 @@ return [
         "utils" => [
             "shared" => true,
             "callback" => function () {
-                $utils = new Peto16\Utils\Utils();
-                $utils->setDI($this);
+                $utils = new \testing\User\Helper();
+                // $utils->setDI($this);
                 return $utils;
             }
         ],

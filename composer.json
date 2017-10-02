@@ -19,7 +19,9 @@
     "autoload": {
         "psr-4": {
             "Anax\\": "src/",
-            "Peto16\\": "src/"
+            "Peto16\\": "src/",
+            "testing\\": "test/src/"
+
         }
     },
     "require": {

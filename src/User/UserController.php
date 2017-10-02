@@ -18,6 +18,9 @@ class UserController implements InjectionAwareInterface
 
     private $session;
     private $userService;
+    private $response;
+    private $view;
+    private $pageRender;
 
 
 
@@ -29,6 +32,9 @@ class UserController implements InjectionAwareInterface
     {
         $this->userService = $this->di->get("userService");
         $this->session = $this->di->get("session");
+        $this->response = $this->di->get("response");
+        $this->view = $this->di->get("view");
+        $this->pageRender = $this->di->get("pageRender");
     }
 
 
@@ -43,12 +49,10 @@ class UserController implements InjectionAwareInterface
     public function getPostLogin()
     {
         if ($this->userService->checkLoggedin()) {
-            $this->di->get("response")->redirect("");
+            $this->response->redirect("");
         }
 
         $title      = "Administration - Login";
-        $view       = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
         $form       = new UserLoginForm($this->di);
 
         $form->check();
@@ -57,9 +61,9 @@ class UserController implements InjectionAwareInterface
             "form" => $form->getHTML(),
         ];
 
-        $view->add("user/login", $data);
+        $this->view->add("user/login", $data);
 
-        $pageRender->renderPage(["title" => $title]);
+        $this->pageRender->renderPage(["title" => $title]);
     }
 
 
@@ -74,8 +78,6 @@ class UserController implements InjectionAwareInterface
     public function getPostCreateUser()
     {
         $title      = "Skapa användare";
-        $view       = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
         $form       = new CreateUserForm($this->di);
 
         $form->check();
@@ -84,9 +86,9 @@ class UserController implements InjectionAwareInterface
             "content" => $form->getHTML(),
         ];
 
-        $view->add("default2/article", $data);
+        $this->view->add("default2/article", $data);
 
-        $pageRender->renderPage(["title" => $title]);
+        $this->pageRender->renderPage(["title" => $title]);
     }
 
 
@@ -105,18 +107,16 @@ class UserController implements InjectionAwareInterface
         $loggedInUser = $this->userService->getCurrentLoggedInUser();
 
         if (!$loggedInUser) {
-            $this->di->get("response")->redirect("login");
+            $this->response->redirect("login");
         }
 
         if ($loggedInUser->id != $id) {
             if (!$loggedInUser->administrator) {
-                $this->di->get("response")->redirect("");
+                $this->response->redirect("");
             }
         }
 
         $title      = "Uppdatera användaren";
-        $view       = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
         $form       = new UpdateUserForm($this->di, $id);
 
         $form->check();
@@ -125,9 +125,9 @@ class UserController implements InjectionAwareInterface
             "content" => $form->getHTML(),
         ];
 
-        $view->add("default2/article", $data);
+        $this->view->add("default2/article", $data);
 
-        $pageRender->renderPage(["title" => $title]);
+        $this->pageRender->renderPage(["title" => $title]);
     }
 
 
@@ -142,12 +142,10 @@ class UserController implements InjectionAwareInterface
         $loggedInUser = $this->userService->getCurrentLoggedInUser();
 
         if (!$loggedInUser && !$loggedInUser->administrator) {
-            $this->di->get("response")->redirect("login");
+            $this->response->redirect("login");
         }
 
         $title      = "Radera en användare";
-        $view       = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
         $form       = new DeleteUserForm($this->di, $id);
 
         $form->check();
@@ -156,9 +154,9 @@ class UserController implements InjectionAwareInterface
             "content" => $form->getHTML(),
         ];
 
-        $view->add("default2/article", $data);
+        $this->view->add("default2/article", $data);
 
-        $pageRender->renderPage(["title" => $title]);
+        $this->pageRender->renderPage(["title" => $title]);
     }
 
 
@@ -171,6 +169,6 @@ class UserController implements InjectionAwareInterface
     public function logout()
     {
         $this->session->delete("user");
-        $this->di->get("response")->redirect("user/login");
+        $this->response->redirect("user/login");
     }
 }
