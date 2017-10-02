@@ -3,6 +3,7 @@
 namespace Peto16\User\HTMLForm;
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Example of FormModel implementation.
  */
