@@ -28,12 +28,30 @@ class UserControllerTest extends TestCase
     }
 
 
-
     /**
      * Initiate the controller test.
      */
     public function testInit()
     {
         self::$userController->init();
+    }
+
+
+    /**
+     * Create an object.
+     */
+    public function testCreate()
+    {
+        $userController = new UserController();
+        $this->assertInstanceOf("Peto16\User\UserController", $userController);
+    }
+    /**
+     * Inject $di.
+     */
+    public function testInjectDi()
+    {
+        $userController = new UserController();
+        $obj = $userController->setDI(self::$di);
+        $this->assertEquals($userController, $obj);
     }
 }
