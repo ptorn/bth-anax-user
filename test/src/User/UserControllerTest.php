@@ -28,6 +28,7 @@ class UserControllerTest extends TestCase
     }
 
 
+
     /**
      * Initiate the controller test.
      */

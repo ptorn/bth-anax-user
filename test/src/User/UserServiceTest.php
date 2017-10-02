@@ -41,10 +41,16 @@ class UserServiceTest extends TestCase
 
 
 
+    /**
+     * Test the construct
+     * @return [type] [description]
+     */
     public function testConstruct()
     {
         $userService = new UserService(self::$di);
+        $this->assertInstanceOf("Peto16\User\UserService", $userService);
     }
+
 
 
     /**

@@ -14,6 +14,7 @@ class CreateUserFormTest extends TestCase
 
 
 
+
     /**
      * Setup before testing class.
      */
@@ -38,5 +39,6 @@ class CreateUserFormTest extends TestCase
     public function testConstruct()
     {
         $form = new CreateUserForm(self::$di);
+        $this->assertInstanceOf("Peto16\User\HTMLForm\CreateUserForm", $form);
     }
 }

@@ -35,12 +35,20 @@ class UserLoginFormTest extends TestCase
 
 
 
+    /**
+     * Test constructor
+     */
     public function testConstruct()
     {
         $form = new UserLoginForm(self::$di);
+        $this->assertInstanceOf("Peto16\User\HTMLForm\UserLoginForm", $form);
     }
 
 
+
+    /**
+     * Test callback submit.
+     */
     public function testCallbackSubmit()
     {
         $form = new UserLoginForm(self::$di);
