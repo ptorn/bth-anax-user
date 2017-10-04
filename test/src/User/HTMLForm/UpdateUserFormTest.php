@@ -39,7 +39,16 @@ class UpdateUserFormTest extends TestCase
      */
     public function testConstruct()
     {
-        new UpdateUserForm(self::$di, 1);
+        $form = new UpdateUserForm(self::$di, 1);
+        $this->assertInstanceOf("Peto16\User\HTMLForm\UpdateUserForm", $form);
+        $user = new \Peto16\User\User();
+        $user->username = "admin";
+        $user->administrator = false;
+        $user->enabled = true;
+
+        self::$session->set("user", $user);
+        $formUser = new UpdateUserForm(self::$di, 1);
+        $this->assertInstanceOf("Peto16\User\HTMLForm\UpdateUserForm", $formUser);
     }
 
 
