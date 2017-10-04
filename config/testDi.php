@@ -106,62 +106,34 @@ return [
                 return $obj;
             }
         ],
-        "navbar" => [
-            "shared" => true,
-            "callback" => function () {
-                $navbar = new \Peto16\Navbar\Navbar();
-                $navbar->configure("navbar.php");
-                $navbar->setDI($this);
-                return $navbar;
-            }
-        ],
-        "adminController" => [
-            "shared" => true,
-            "callback" => function () {
-                $adminController = new \Peto16\Admin\AdminController();
-                $adminController->setDI($this);
-                return $adminController;
-            }
-        ],
         "db" => [
-            "shared" => true,
+            "shared" => false,
             "callback" => function () {
                 $obj = new \Anax\Database\DatabaseQueryBuilder();
                 $obj->configure("testDatabase.php");
+                $obj->connect();
+
+                $sql = '
+                CREATE TABLE `ramverk1_User`
+                (
+                    `id` INTEGER PRIMARY KEY NOT NULL,
+                    `username` VARCHAR(30) NOT NULL UNIQUE,
+                    `password` VARCHAR(255) NOT NULL,
+                    `email` VARCHAR(255) DEFAULT NULL UNIQUE,
+                    `firstname` VARCHAR(40) DEFAULT NULL,
+                    `lastname` VARCHAR(40) DEFAULT NULL,
+                    `administrator` BOOLEAN DEFAULT False,
+                    `enabled` BOOLEAN DEFAULT True,
+                    `deleted` DATETIME DEFAULT NULL
+                )';
+                $obj->execute($sql);
+                $sql = 'INSERT INTO `ramverk1_User` (id, username, password, email, firstname, lastname, administrator, enabled, deleted) VALUES
+                    (1, "admin", "$2y$10$vaqfYKE2TfIzo7EQMxd8fOg3AvnPBZPTtV4l98aN4Ep6TkmjA2/Cm", "peder.tornberg@gmail.com", "Peder", "Tornberg", 1, 1, NULL),
+                    (2, "doe", "$2y$10$dYBys9cIIKEsdtQoiIiELOVkuRbcyfMZt7L8Pinw7JHDpZEol7UN6", "doe@example.com", "John", "Doe", 0, 1, NULL),
+                    (3, "bob", "$2y$10$bV/btm035m/Hv87RYB04JuTFN7opVra1zlBcvdKJHxTzBISmQeHSy", "bob@example.com", "Bob", "Builder", 0, 0, NULL),
+                    (4, "disabled", "$2y$10$bV/btm035m/Hv87RYB04JuTFN7opVra1zlBcvdKJHxTzBISmQeHSy", "disabled@example.com", "Pink", "Panther", 0, 0, NULL)';
+                $obj->execute($sql);
                 return $obj;
-            }
-        ],
-        "rem" => [
-            "shared" => true,
-            "callback" => function () {
-                $rem = new \Anax\RemServer\RemServer();
-                $rem->configure("remserver.php");
-                $rem->injectSession($this->get("session"));
-                return $rem;
-            }
-        ],
-        "remController" => [
-            "shared" => true,
-            "callback" => function () {
-                $remController = new \Anax\RemServer\RemServerController();
-                $remController->setDI($this);
-                return $remController;
-            }
-        ],
-        "comController" => [
-            "shared" => true,
-            "callback" => function () {
-                $comController = new \Peto16\Comment\CommentController();
-                $comController->setDI($this);
-                $comController->init();
-                return $comController;
-            }
-        ],
-        "commentService" => [
-            "shared" => true,
-            "callback" => function () {
-                $comment = new \Peto16\Comment\CommentService($this);
-                return $comment;
             }
         ],
         "utils" => [
@@ -186,14 +158,6 @@ return [
                 $userController->setDI($this);
                 $userController->init();
                 return $userController;
-            }
-        ],
-        "bookController" => [
-            "shared" => true,
-            "callback" => function () {
-                $obj = new \Anax\Book\BookController();
-                $obj->setDI($this);
-                return $obj;
             }
         ],
     ],

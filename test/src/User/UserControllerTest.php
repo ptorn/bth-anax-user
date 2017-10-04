@@ -36,17 +36,6 @@ class UserControllerTest extends TestCase
 
 
     /**
-     * Teardown after every method test.
-     */
-    public function tearDown()
-    {
-        copy(ANAX_APP_PATH . "/test/db/anax_user_test_2.sqlite", ANAX_APP_PATH . "/test/db/anax_user_test.sqlite");
-        // self::$session->delete("user");
-    }
-
-
-
-    /**
      * Initiate the controller test.
      */
     public function testInit()
@@ -88,18 +77,18 @@ class UserControllerTest extends TestCase
     }
 
 
-    //
-    // public function testGetPostUpdateUser()
-    // {
-    //     self::$userController->getPostUpdateUser(1);
-    // }
+
+    public function testGetPostUpdateUser()
+    {
+        self::$userController->getPostUpdateUser(1);
+    }
 
 
 
-    // public function testGetPostDeleteUser()
-    // {
-    //     self::$userController->getPostDeleteUser(1);
-    // }
+    public function testGetPostDeleteUser()
+    {
+        self::$userController->getPostDeleteUser(1);
+    }
 
 
 

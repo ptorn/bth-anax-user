@@ -31,18 +31,19 @@ class UpdateUserFormTest extends TestCase
 
 
 
-    // /**
-    //  * Constructor injects with DI container.
-    //  *
-    //  * @param Anax\DI\DIInterface $di a service container
-    //  * @param integer             $id to update
-    //  */
-    // public function testConstruct()
-    // {
-    //     new UpdateUserForm(self::$di, 1);
-    // }
-    //
-    //
+    /**
+     * Constructor injects with DI container.
+     *
+     * @param Anax\DI\DIInterface $di a service container
+     * @param integer             $id to update
+     */
+    public function testConstruct()
+    {
+        new UpdateUserForm(self::$di, 1);
+    }
+
+
+
     public function testCallbackSubmit()
     {
         self::$newForm->callbackSubmit();

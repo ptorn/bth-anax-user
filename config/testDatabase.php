@@ -1,10 +1,12 @@
 <?php
 
 return [
-    "dsn"             => "sqlite:" . ANAX_INSTALL_PATH . "/test/db/anax_user_test.sqlite",
+    "dsn"             => "sqlite::memory:", //. ANAX_INSTALL_PATH . "/test/db/anax_user_test.sqlite",
     "username"        => null,
     "password"        => null,
+    "driver_options"  => null,
     "fetch_mode"      => \PDO::FETCH_OBJ,
+    "table_prefix"    => null,
     "session_key"     => "Anax\Database",
     // True to be very verbose during development
     "verbose"         => true,

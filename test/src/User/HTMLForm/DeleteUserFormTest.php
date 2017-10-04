@@ -32,6 +32,17 @@ class DeleteUserFormTest extends TestCase
 
 
 
+    /**
+     * Test constructor
+     */
+    public function testConstruct()
+    {
+        $form = new DeleteUserForm(self::$di, 4);
+        $this->assertInstanceOf("Peto16\User\HTMLForm\DeleteUserForm", $form);
+    }
+
+
+
     public function testCallbackSubmit()
     {
         self::$newForm->callbackSubmit();

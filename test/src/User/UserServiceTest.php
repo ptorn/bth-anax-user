@@ -17,7 +17,6 @@ class UserServiceTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        copy(ANAX_APP_PATH . "/test/db/anax_user_test_2.sqlite", ANAX_APP_PATH . "/test/db/anax_user_test.sqlite");
         self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
         self::$session = self::$di->get("session");
         self::$userService = new UserService(self::$di);
@@ -27,16 +26,6 @@ class UserServiceTest extends TestCase
         $admin->deleted = null;
 
         self::$session->set("user", $admin);
-    }
-
-
-
-    /**
-     * Teardown after every method test.
-     */
-    public function tearDown()
-    {
-        copy(ANAX_APP_PATH . "/test/db/anax_user_test_2.sqlite", ANAX_APP_PATH . "/test/db/anax_user_test.sqlite");
     }
 
 
@@ -93,7 +82,7 @@ class UserServiceTest extends TestCase
     public function testUpdateUser()
     {
         $updUser = new User();
-        $updUser->id = 1;
+        $updUser->id = 5;
         $updUser->username = "adminTest";
         $updUser->firstname = "adminTest";
 
@@ -112,10 +101,8 @@ class UserServiceTest extends TestCase
      */
     public function testDeleteUser()
     {
-        $testUser = new User();
-        $testUser->administrator = 0;
-        self::$userService->deleteUser(1);
-        $user = self::$userService->getUserByField("id", 1);
+        self::$userService->deleteUser(3);
+        $user = self::$userService->getUserByField("id", 3);
         $this->assertNotNull($user->deleted);
 
         $testUser = new User();
@@ -140,8 +127,8 @@ class UserServiceTest extends TestCase
     public function testFindAllUsers()
     {
         $users = self::$userService->findAllUsers();
-        $this->assertTrue(sizeof($users) === 2);
-        $this->assertEquals($users[0]->username, "test");
+        $this->assertTrue(sizeof($users) === 4);
+        $this->assertEquals($users[0]->username, "admin");
     }
 
 
@@ -164,13 +151,13 @@ class UserServiceTest extends TestCase
     public function testLogin()
     {
         try {
-            self::$userService->login("test", "test");
+            self::$userService->login("admin", "test");
         } catch (Exception $e) {
             $this->assertEquals("Error, not valid credentials.", $e->getMessage());
         }
 
         try {
-            self::$userService->login("test", null);
+            self::$userService->login("doe", null);
         } catch (Exception $e) {
             $this->assertEquals("Empty password field.", $e->getMessage());
         }
@@ -182,12 +169,12 @@ class UserServiceTest extends TestCase
         }
 
         try {
-            self::$userService->login("disabled", "adminn");
+            self::$userService->login("disabled", "disabled");
         } catch (Exception $e) {
             $this->assertEquals("Error, disabled account.", $e->getMessage());
         }
 
-        $this->assertTrue(self::$userService->login("test", "admin"));
+        $this->assertTrue(self::$userService->login("admin", "admin"));
     }
 
 
