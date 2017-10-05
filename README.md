@@ -6,6 +6,7 @@ Anax user module Readme
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/build-status/master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/88837208-2891-46ef-83d5-7153ce0ce0c0/mini.png)](https://insight.sensiolabs.com/projects/88837208-2891-46ef-83d5-7153ce0ce0c0)
 
 
 About

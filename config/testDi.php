@@ -140,7 +140,6 @@ return [
             "shared" => true,
             "callback" => function () {
                 $utils = new \testing\User\Helper();
-                // $utils->setDI($this);
                 return $utils;
             }
         ],

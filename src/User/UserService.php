@@ -13,7 +13,7 @@ class UserService
      * Constructor for UserService
      * @param object            $di dependency injection.
      */
-    public function __construct($di)
+    public function __construct(\Anax\DI\DIFactoryConfig $di)
     {
         $this->userStorage = new UserStorage();
         $this->userStorage->setDb($di->get("db"));
@@ -28,7 +28,7 @@ class UserService
      * @param  object           $user User object to store.
      * @return void
      */
-    public function createUser($user)
+    public function createUser(User $user)
     {
         if ($this->userStorage->getUserByField("email", $user->email)) {
             throw new Exception("E-postadress används redan.");

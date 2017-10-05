@@ -93,7 +93,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
         $userVarArray = get_object_vars($user);
 
         foreach ($userVarArray as $key => $value) {
-            if ($value != null) {
+            if ($value !== null) {
                 $this->{$key} = $value;
             }
         }
