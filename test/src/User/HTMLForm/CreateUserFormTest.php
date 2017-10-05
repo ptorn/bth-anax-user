@@ -38,7 +38,7 @@ class CreateUserFormTest extends TestCase
     // public function testCallbackSubmit()
     // {
     //
-    //     // $form = new CreateUserForm(self::$di);
+    //     $form = new CreateUserForm(self::$di);
     //     $form->callbackSubmit();
     // }
 }

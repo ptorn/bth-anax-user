@@ -2,8 +2,16 @@
 
 namespace testing\User;
 
+/**
+ * Helper class to mock methods.
+ */
 class Helper
 {
+
+    /**
+     * Mocking redirect method
+     * @return boolean return true to pass test
+     */
     public function redirect()
     {
         return true;
@@ -11,6 +19,10 @@ class Helper
 
 
 
+    /**
+     * Mocking add method
+     * @return boolean return true to pass test
+     */
     public function add()
     {
         return true;
@@ -18,6 +30,10 @@ class Helper
 
 
 
+    /**
+     * Mocking renderpage method
+     * @return boolean return true to pass test
+     */
     public function renderPage()
     {
         return true;
@@ -25,13 +41,21 @@ class Helper
 
 
 
+    /**
+     * Mocking getServer method
+     * @return string return string "GET"
+     */
     public function getServer()
     {
-        return "POST";
+        return "GET";
     }
 
 
 
+    /**
+     * Mocking getPost method
+     * @return boolean return true to pass test
+     */
     public function getPost()
     {
         return true;

@@ -107,7 +107,7 @@ return [
             }
         ],
         "db" => [
-            "shared" => false,
+            "shared" => true,
             "callback" => function () {
                 $obj = new \Anax\Database\DatabaseQueryBuilder();
                 $obj->configure("testDatabase.php");

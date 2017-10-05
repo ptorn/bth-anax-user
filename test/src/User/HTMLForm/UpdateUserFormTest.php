@@ -13,6 +13,8 @@ class UpdateUserFormTest extends TestCase
     protected static $session;
     protected static $newForm;
 
+
+
     /**
      * Setup before testing class.
      */

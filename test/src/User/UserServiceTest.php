@@ -15,7 +15,7 @@ class UserServiceTest extends TestCase
     /**
      * Setup before testing class.
      */
-    public static function setUpBeforeClass()
+    public function setUp()
     {
         self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
         self::$session = self::$di->get("session");
@@ -58,6 +58,7 @@ class UserServiceTest extends TestCase
         $user->password = $user->hashPassword($user->email);
         self::$userService->createUser($user);
         $this->assertEquals(self::$userService->getUserByField("username", "test2")->username, "test2");
+        $this->assertEquals(self::$userService->getUserByField("username", "test2")->id, 5);
 
         try {
             self::$userService->createUser($user);
@@ -82,9 +83,9 @@ class UserServiceTest extends TestCase
     public function testUpdateUser()
     {
         $updUser = new User();
-        $updUser->id = 5;
-        $updUser->username = "adminTest";
-        $updUser->firstname = "adminTest";
+        $updUser->id = 3;
+        $updUser->username = "bobTest";
+        $updUser->firstname = "bobTest";
 
         self::$userService->updateUser($updUser);
         $user = self::$userService->getUserByField("id", $updUser->id);
@@ -101,14 +102,25 @@ class UserServiceTest extends TestCase
      */
     public function testDeleteUser()
     {
+        $users = self::$userService->findAllUsers();
+
+        $this->assertTrue(sizeof($users) === 4);
         self::$userService->deleteUser(3);
+        $users = self::$userService->findAllUsers();
+        $this->assertTrue(sizeof($users) === 3);
+
         $user = self::$userService->getUserByField("id", 3);
         $this->assertNotNull($user->deleted);
 
         $testUser = new User();
         $testUser->administrator = false;
         self::$session->set("user", $testUser);
+
+        $users = self::$userService->findAllUsers();
+        $this->assertTrue(sizeof($users) === 3);
         $this->assertFalse(self::$userService->deleteUser(1));
+        $users = self::$userService->findAllUsers();
+        $this->assertTrue(sizeof($users) === 3);
 
         $admin = new User();
         $admin->administrator = true;

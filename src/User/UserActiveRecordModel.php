@@ -76,6 +76,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     {
         $user = $this->find("id", $id);
         $this->id = $user->id;
+        date_default_timezone_set("Europe/Stockholm");
         $this->deleted = date("Y-m-d H:i:s");
         $this->save();
     }

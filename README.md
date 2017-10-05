@@ -1,6 +1,10 @@
 Anax user module Readme
 ==================================
 
+[![Build Status](https://travis-ci.org/ptorn/bth-anax-user.svg?branch=master)](https://travis-ci.org/ptorn/bth-anax-user)
+
+[![CircleCI](https://circleci.com/gh/ptorn/bth-anax-user/tree/master.svg?style=svg)](https://circleci.com/gh/ptorn/bth-anax-user/tree/master)
+
 About
 ------------------
 This is a user module for Anax. With this you can handle the users stored in your database. And validate a user and login the user.
