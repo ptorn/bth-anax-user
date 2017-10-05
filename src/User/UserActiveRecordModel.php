@@ -37,7 +37,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Create user.
      *
-     * @param  array        $userData Key, value array.
+     * @param  User        $user a user object.
      *
      * @return void
      */
@@ -52,7 +52,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Update user.
      *
-     * @param  array        $user User object.
+     * @param  User        $user User object.
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Delete user.
      *
-     * @param  array        $userData Key, value array.
+     * @param  integer        $id, integer for userid.
      *
      * @return void
      */
@@ -86,7 +86,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Dynamicly set user properties to its value.
      *
-     * @param array            $user user object
+     * @param User            $user user object
      */
     public function setUserData(User $user)
     {

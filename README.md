@@ -4,8 +4,8 @@ Anax user module Readme
 [![Build Status](https://travis-ci.org/ptorn/bth-anax-user.svg?branch=master)](https://travis-ci.org/ptorn/bth-anax-user)
 [![CircleCI](https://circleci.com/gh/ptorn/bth-anax-user/tree/master.svg?style=svg)](https://circleci.com/gh/ptorn/bth-anax-user/tree/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/build-status/master)
 
 
 About
