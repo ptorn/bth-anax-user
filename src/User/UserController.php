@@ -145,7 +145,7 @@ class UserController implements InjectionAwareInterface
         if ($loggedInUser === null) {
             $this->response->redirect("login");
         }
-        if ($loggedInUser != null && !$loggedInUser->administrator) {
+        if ($loggedInUser !== null && !$loggedInUser->administrator) {
             $this->response->redirect("login");
         }
 
