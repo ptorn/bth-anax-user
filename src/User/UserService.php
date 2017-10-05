@@ -87,8 +87,8 @@ class UserService
         $userVarArray = get_object_vars($user);
         $arrayKeys = array_keys($userVarArray);
         $userData = $this->userStorage->getUserByField($field, $data);
-        if (!$userData) {
-            return false;
+        if (empty($userData)) {
+            return $user;
         }
         foreach ($arrayKeys as $key) {
             $user->{$key} = $userData->$key;
@@ -139,6 +139,10 @@ class UserService
             throw new Exception("Error, not valid credentials.");
         }
 
+        if ($user->id === null) {
+            throw new Exception("Error, not valid credentials.");
+        }
+
         if ((int)$user->enabled === 0) {
             throw new Exception("Error, disabled account.");
         }
@@ -148,7 +152,6 @@ class UserService
             return true;
         }
         throw new Exception("Error, not valid credentials.");
-        return false;
     }
 
 
@@ -206,11 +209,11 @@ class UserService
      * @param  string           $email email adress
      * @return string           Gravatar url.
      */
-    public function generateGravatarUrl($email = null)
+    public function generateGravatarUrl($email = "")
     {
-        if ($email) {
-            return "https://s.gravatar.com/avatar/" . md5(strtolower(trim($email)));
+        if ($email === "") {
+            return "http://www.gravatar.com/avatar/?d=identicon";
         }
-        return "http://www.gravatar.com/avatar/?d=identicon";
+        return "https://s.gravatar.com/avatar/" . md5(strtolower(trim($email)));
     }
 }
