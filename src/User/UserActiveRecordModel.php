@@ -68,7 +68,7 @@ class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInte
     /**
      * Delete user.
      *
-     * @param  integer        $id, integer for userid.
+     * @param  integer        $id integer for userid.
      *
      * @return void
      */

@@ -108,6 +108,7 @@ class UserController implements InjectionAwareInterface
 
         if (!$loggedInUser) {
             $this->response->redirect("login");
+            return false;
         }
 
         if ($loggedInUser->id != $id) {
@@ -141,8 +142,13 @@ class UserController implements InjectionAwareInterface
     {
         $loggedInUser = $this->userService->getCurrentLoggedInUser();
 
-        if (!$loggedInUser && !$loggedInUser->administrator) {
+        if (!$loggedInUser) {
             $this->response->redirect("login");
+            return false;
+        }
+        if (!$loggedInUser->administrator) {
+            $this->response->redirect("login");
+            return false;
         }
 
         $title      = "Radera en användare";

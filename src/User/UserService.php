@@ -135,10 +135,6 @@ class UserService
             throw new Exception("Empty password field.");
         }
 
-        if (empty($user)) {
-            throw new Exception("Error, not valid credentials.");
-        }
-
         if ($user->id === null) {
             throw new Exception("Error, not valid credentials.");
         }
