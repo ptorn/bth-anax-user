@@ -1,6 +1,7 @@
 Anax user module Readme
 ==================================
 
+[![Latest Stable Version](https://poser.pugx.org/ptorn/bth-anax-user/v/stable)](https://packagist.org/packages/ptorn/bth-anax-user)
 [![Build Status](https://travis-ci.org/ptorn/bth-anax-user.svg?branch=master)](https://travis-ci.org/ptorn/bth-anax-user)
 [![CircleCI](https://circleci.com/gh/ptorn/bth-anax-user/tree/master.svg?style=svg)](https://circleci.com/gh/ptorn/bth-anax-user/tree/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptorn/bth-anax-user/?branch=master)
