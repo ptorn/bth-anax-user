@@ -31,7 +31,7 @@ class User
      *
      * @param string $password the password to use.
      *
-     * @return void
+     * @return string   return hashed password.
      */
     public function hashPassword($password)
     {
