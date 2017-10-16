@@ -17,7 +17,8 @@ class UserServiceTest extends TestCase
      */
     public function setUp()
     {
-        self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
+        self::$di = new \Anax\DI\DIFactoryConfig();
+        self::$di->configure(ANAX_APP_PATH . "/test/config/testDi.php");
         self::$session = self::$di->get("session");
         self::$userService = new UserService(self::$di);
         $admin = new User();

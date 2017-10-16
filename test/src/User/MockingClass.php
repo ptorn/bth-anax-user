@@ -5,7 +5,7 @@ namespace testing\User;
 /**
  * Helper class to mock methods.
  */
-class Helper
+class MockingClass
 {
 
     /**

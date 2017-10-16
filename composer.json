@@ -21,7 +21,6 @@
             "Anax\\": "src/",
             "Peto16\\": "src/",
             "testing\\": "test/src/"
-
         }
     },
     "require": {

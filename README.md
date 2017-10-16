@@ -44,6 +44,14 @@ Now we need a table in the database to store the users. In `/config/sql/setup.sq
 ### Views
 The last step is to copy the views from `/vendor/ptorn/user/bth-anax-user/view/user/` into `/view/`
 
+### Autoload Namespace
+Add this to your composer.json
+`"autoload": {
+    "psr-4": {
+        "Peto16\\": "src/",
+        "testing\\": "test/src/"
+    }`
+
 Usage
 ------------------
 Once installation is done there will be some new routes available.

@@ -20,7 +20,8 @@ class UpdateUserFormTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
+        self::$di = new \Anax\DI\DIFactoryConfig();
+        self::$di->configure(ANAX_APP_PATH . "/test/config/testDi.php");
         self::$session = self::$di->get("session");
         $user = new \Peto16\User\User();
         $user->username = "admin";

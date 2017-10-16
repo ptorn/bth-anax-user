@@ -18,7 +18,7 @@ return [
         "response" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \testing\User\Helper();
+                $obj = new \testing\User\MockingClass();
                 return $obj;
             }
         ],
@@ -49,7 +49,7 @@ return [
         "view" => [
             "shared" => true,
             "callback" => function () {
-                $view = new \testing\User\Helper();
+                $view = new \testing\User\MockingClass();
                 return $view;
             }
         ],
@@ -66,7 +66,7 @@ return [
             "active" => true,
             "callback" => function () {
                 $session = new \Anax\Session\SessionConfigurable();
-                $session->configure("testSession.php");
+                $session->configure(ANAX_APP_PATH . "/test/config/testSession.php");
                 $session->start();
                 return $session;
             }
@@ -102,7 +102,7 @@ return [
         "pageRender" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \testing\User\Helper();
+                $obj = new \testing\User\MockingClass();
                 return $obj;
             }
         ],
@@ -110,7 +110,19 @@ return [
             "shared" => true,
             "callback" => function () {
                 $obj = new \Anax\Database\DatabaseQueryBuilder();
-                $obj->configure("testDatabase.php");
+                $obj->configure([
+                    "dsn"             => "sqlite::memory:",
+                    "username"        => null,
+                    "password"        => null,
+                    "driver_options"  => null,
+                    "fetch_mode"      => \PDO::FETCH_OBJ,
+                    "table_prefix"    => null,
+                    "session_key"     => "Anax\Database",
+                    // True to be very verbose during development
+                    "verbose"         => true,
+                    // True to be verbose on connection failed
+                    "debug_connect"   => true,
+                ]);
                 $obj->connect();
 
                 $sql = '
@@ -139,7 +151,7 @@ return [
         "utils" => [
             "shared" => true,
             "callback" => function () {
-                $utils = new \testing\User\Helper();
+                $utils = new \testing\User\MockingClass();
                 return $utils;
             }
         ],

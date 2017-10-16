@@ -15,28 +15,14 @@ class UserControllerTest extends TestCase
     protected static $userController;
 
 
-    // /**
-    //  * Setup before testing class.
-    //  */
-    // public static function setUpBeforeClass()
-    // {
-    //     self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
-    //     self::$userController = new UserController();
-    //     self::$userController->setDi(self::$di);
-    //     self::$userController->init();
-    //     self::$session = self::$di->get("session");
-    //     $user = new User();
-    //     $user->id = 2;
-    //     $user->username = "admin";
-    //     $user->administrator = true;
-    //     $user->enabled = true;
-    //
-    //     self::$session->set("user", $user);
-    // }
 
+    /**
+     * Setup testing environment
+     */
     public function setUp()
     {
-        self::$di = new \Anax\DI\DIFactoryConfig("testDi.php");
+        self::$di = new \Anax\DI\DIFactoryConfig();
+        self::$di->configure(ANAX_APP_PATH . "/test/config/testDi.php");
         self::$userController = new UserController();
         self::$userController->setDi(self::$di);
         self::$userController->init();
@@ -50,6 +36,8 @@ class UserControllerTest extends TestCase
         self::$session->set("user", $admin);
     }
 
+
+
     /**
      * Initiate the controller test.
      */
@@ -57,6 +45,7 @@ class UserControllerTest extends TestCase
     {
         self::$userController->init();
     }
+
 
 
     /**
@@ -67,6 +56,10 @@ class UserControllerTest extends TestCase
         $userController = new UserController();
         $this->assertInstanceOf("Peto16\User\UserController", $userController);
     }
+
+
+
+
     /**
      * Inject $di.
      */
@@ -79,6 +72,11 @@ class UserControllerTest extends TestCase
     }
 
 
+
+    /**
+     * Test the login process
+     * @return void
+     */
     public function testGetPostLogin()
     {
         self::$userController->getPostLogin();
@@ -86,6 +84,10 @@ class UserControllerTest extends TestCase
 
 
 
+    /**
+     * Test create user.
+     * @return void
+     */
     public function testGetPostCreateUser()
     {
         self::$userController->getPostCreateUser();
@@ -93,6 +95,10 @@ class UserControllerTest extends TestCase
 
 
 
+    /**
+     * Test update user.
+     * @return void
+     */
     public function testGetPostUpdateUser()
     {
         self::$userController->getPostUpdateUser(1);
@@ -112,6 +118,10 @@ class UserControllerTest extends TestCase
 
 
 
+    /**
+     * Test delete user.
+     * @return void
+     */
     public function testGetPostDeleteUser()
     {
         self::$userController->getPostDeleteUser(1);
@@ -131,8 +141,14 @@ class UserControllerTest extends TestCase
 
 
 
+    /**
+     * Test logout.
+     * @return void
+     */
     public function testLogout()
     {
+        $this->assertTrue(self::$session->has("user"));
         self::$userController->logout();
+        $this->assertFalse(self::$session->has("user"));
     }
 }
