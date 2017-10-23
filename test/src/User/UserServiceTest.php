@@ -176,6 +176,12 @@ class UserServiceTest extends TestCase
         }
 
         try {
+            self::$userService->login("doe", "doe");
+        } catch (Exception $e) {
+            $this->assertEquals("User deleted.", $e->getMessage());
+        }
+
+        try {
             self::$userService->login("noUser", "test");
         } catch (Exception $e) {
             $this->assertEquals("Error, not valid credentials.", $e->getMessage());
