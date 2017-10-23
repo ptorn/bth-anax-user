@@ -139,6 +139,10 @@ class UserService
             throw new Exception("Error, not valid credentials.");
         }
 
+        if ($user->deleted !== null) {
+            throw new Exception("User deleted.");
+        }
+
         if ((int)$user->enabled === 0) {
             throw new Exception("Error, disabled account.");
         }
